@@ -4,15 +4,15 @@ import { Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion";
 
-import PublicNavbar from "@/components/Navbar/PublicNavbar";
 import FadeInImage from "./fade-in-image";
 import AppScreenshotSkewed from "./app-screenshot-skewed";
+import PublicNavbar from "@/components/Navbar/PublicNavbar";
 
 export default function LandingPage() {
   return (
     <div className="relative flex h-screen min-h-dvh w-full flex-col overflow-hidden bg-background">
-      {/* <PublicNavbar /> */}
-      <main className="container mx-auto mt-[80px] flex max-w-[1024px] flex-col items-start px-8">
+      <PublicNavbar />
+      <div className="container mx-auto mt-[80px] flex max-w-[1024px] flex-col items-start px-8">
         <section className="z-20 flex flex-col items-start justify-center gap-[18px] sm:gap-6">
           <Button
             className="h-9 overflow-hidden border-1 border-default-100 bg-default-50 px-[18px] py-2 text-small font-normal leading-5 text-default-500"
@@ -125,7 +125,7 @@ export default function LandingPage() {
             </m.div>
           </LazyMotion>
         </section>
-      </main>
+      </div>
       <LazyMotion features={domAnimation}>
         <AnimatePresence mode="wait">
           <m.div

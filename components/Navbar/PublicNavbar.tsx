@@ -17,6 +17,8 @@ import {
   cn,
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { ThemeSwitch } from "../theme-switch";
+import { useSession } from "next-auth/react";
 
 // import { AcmeIcon } from "./social";
 
@@ -34,6 +36,8 @@ const menuItems = [
 const PublicNavbar = React.forwardRef<HTMLElement, NavbarProps>(
   ({ classNames = {}, ...props }, ref) => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+    const { data: session, status } = useSession();
 
     return (
       <Navbar
@@ -100,10 +104,21 @@ const PublicNavbar = React.forwardRef<HTMLElement, NavbarProps>(
 
         {/* Right Content */}
         <NavbarContent className="hidden md:flex" justify="end">
+          <NavbarItem>
+            <ThemeSwitch />
+          </NavbarItem>
           <NavbarItem className="ml-2 !flex gap-2">
-            <Button className="text-default-500" radius="full" variant="light">
-              Login
-            </Button>
+            {status !== "authenticated" && (
+              <Button
+                className="text-default-500"
+                radius="full"
+                variant="light"
+                as={Link}
+                href="/login"
+              >
+                Login
+              </Button>
+            )}
             <Button
               className="bg-default-foreground font-medium text-background"
               color="secondary"
@@ -130,11 +145,13 @@ const PublicNavbar = React.forwardRef<HTMLElement, NavbarProps>(
             },
           }}
         >
-          <NavbarMenuItem>
-            <Button fullWidth as={Link} href="/#" variant="faded">
-              Sign In
-            </Button>
-          </NavbarMenuItem>
+          {status !== "authenticated" && (
+            <NavbarMenuItem>
+              <Button fullWidth as={Link} href="/#" variant="faded">
+                Sign In
+              </Button>
+            </NavbarMenuItem>
+          )}
           <NavbarMenuItem className="mb-4">
             <Button
               fullWidth
