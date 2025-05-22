@@ -15,6 +15,7 @@ import {
   Link,
   Button,
 } from "@heroui/react";
+import { ThemeSwitch } from "../theme-switch";
 
 // import { AcmeIcon } from "./acme";
 
@@ -80,6 +81,9 @@ export default function PrivateNavbar(props: NavbarProps) {
           <Link className="text-default-500" href="#" size="sm">
             Reminders
           </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="ml-2 !flex">
           <Button radius="full" variant="flat">
