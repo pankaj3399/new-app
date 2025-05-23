@@ -6,6 +6,7 @@ import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion";
 
 import FadeInImage from "./fade-in-image";
 import AppScreenshotSkewed from "./app-screenshot-skewed";
+
 import PublicNavbar from "@/components/Navbar/PublicNavbar";
 
 export default function LandingPage() {

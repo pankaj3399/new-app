@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
 export async function signup(
   username: string,
   email: string,
-  password: string
+  password: string,
 ) {
   const user = await prisma.user.findFirst({
     where: { email },
