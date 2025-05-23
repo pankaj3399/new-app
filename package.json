@@ -28,7 +28,6 @@
     "@heroui/theme": "2.4.15",
     "@iconify/react": "^6.0.0",
     "@prisma/client": "^6.8.2",
-    "@prisma/nextjs-monorepo-workaround-plugin": "^6.8.2",
     "@react-aria/ssr": "3.9.8",
     "@react-aria/visually-hidden": "3.8.22",
     "@types/bcrypt": "^5.0.2",

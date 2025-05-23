@@ -1,5 +1,16 @@
-const withPrisma = require("@prisma/nextjs-monorepo-workaround-plugin");
+// next.config.js
+const nextConfig = {
+  reactStrictMode: true,
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push({
+        ".prisma/client": "commonjs .prisma/client",
+        "@prisma/client": "commonjs @prisma/client",
+      });
+    }
 
-module.exports = withPrisma({
-  // your existing config
-});
+    return config;
+  },
+};
+
+module.exports = nextConfig;
