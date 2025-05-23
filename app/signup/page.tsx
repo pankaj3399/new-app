@@ -91,8 +91,8 @@ export default function SignUpPage() {
     >
       {/* Theme Toggle */}
       <button
-        onClick={() => setIsDark(!isDark)}
         className="fixed top-4 right-4 z-50 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all"
+        onClick={() => setIsDark(!isDark)}
       >
         {isDark ? (
           <Sun className="w-5 h-5 text-yellow-400" />
@@ -148,41 +148,35 @@ export default function SignUpPage() {
 
         <div className="flex flex-col gap-4">
           <Input
-            type="text"
+            isRequired
+            classNames={inputClasses}
             label="Username"
             placeholder="Enter your fullname"
+            type="text"
             value={formData.username}
-            onChange={(e) => handleInputChange("username", e.target.value)}
-            classNames={inputClasses}
             variant="bordered"
-            isRequired
+            onChange={(e) => handleInputChange("username", e.target.value)}
           />
 
           <Input
-            type="email"
+            isRequired
+            classNames={inputClasses}
             label="Email Address"
             placeholder="Enter your email"
+            type="email"
             value={formData.email}
-            onChange={(e) => handleInputChange("email", e.target.value)}
-            classNames={inputClasses}
             variant="bordered"
-            isRequired
+            onChange={(e) => handleInputChange("email", e.target.value)}
           />
 
           <Input
-            type={isVisible ? "text" : "password"}
-            label="Password"
-            placeholder="Enter your password"
-            value={formData.password}
-            onChange={(e) => handleInputChange("password", e.target.value)}
-            classNames={inputClasses}
-            variant="bordered"
             isRequired
+            classNames={inputClasses}
             endContent={
               <button
+                className={`${isDark ? "text-gray-400" : "text-gray-600"} hover:text-blue-500`}
                 type="button"
                 onClick={toggleVisibility}
-                className={`${isDark ? "text-gray-400" : "text-gray-600"} hover:text-blue-500`}
               >
                 {isVisible ? (
                   <EyeOff className="w-5 h-5" />
@@ -191,24 +185,22 @@ export default function SignUpPage() {
                 )}
               </button>
             }
+            label="Password"
+            placeholder="Enter your password"
+            type={isVisible ? "text" : "password"}
+            value={formData.password}
+            variant="bordered"
+            onChange={(e) => handleInputChange("password", e.target.value)}
           />
 
           <Input
-            type={isConfirmVisible ? "text" : "password"}
-            label="Confirm Password"
-            placeholder="Confirm your password"
-            value={formData.confirmPassword}
-            onChange={(e) =>
-              handleInputChange("confirmPassword", e.target.value)
-            }
-            classNames={inputClasses}
-            variant="bordered"
             isRequired
+            classNames={inputClasses}
             endContent={
               <button
+                className={`${isDark ? "text-gray-400" : "text-gray-600"} hover:text-blue-500`}
                 type="button"
                 onClick={toggleConfirmVisibility}
-                className={`${isDark ? "text-gray-400" : "text-gray-600"} hover:text-blue-500`}
               >
                 {isConfirmVisible ? (
                   <EyeOff className="w-5 h-5" />
@@ -217,13 +209,17 @@ export default function SignUpPage() {
                 )}
               </button>
             }
+            label="Confirm Password"
+            placeholder="Confirm your password"
+            type={isConfirmVisible ? "text" : "password"}
+            value={formData.confirmPassword}
+            variant="bordered"
+            onChange={(e) =>
+              handleInputChange("confirmPassword", e.target.value)
+            }
           />
 
           <Checkbox
-            isSelected={formData.agreeToTerms}
-            onValueChange={(checked) =>
-              handleInputChange("agreeToTerms", checked)
-            }
             classNames={{
               base: "py-2",
               label: isDark ? "text-gray-300" : "text-gray-700",
@@ -231,20 +227,24 @@ export default function SignUpPage() {
                 ? "before:border-gray-600"
                 : "before:border-gray-400",
             }}
+            isSelected={formData.agreeToTerms}
             size="sm"
+            onValueChange={(checked) =>
+              handleInputChange("agreeToTerms", checked)
+            }
           >
             I agree with the{" "}
             <Link
-              href="#"
               className={`${isDark ? "text-blue-400" : "text-blue-600"} hover:underline`}
+              href="#"
               size="sm"
             >
               Terms
             </Link>{" "}
             and{" "}
             <Link
-              href="#"
               className={`${isDark ? "text-blue-400" : "text-blue-600"} hover:underline`}
+              href="#"
               size="sm"
             >
               Privacy Policy
@@ -252,14 +252,14 @@ export default function SignUpPage() {
           </Checkbox>
 
           <Button
-            onClick={handleSubmit}
             className={`w-full font-semibold ${
               isDark
                 ? "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                 : "bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800"
             } text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200`}
-            size="lg"
             radius="lg"
+            size="lg"
+            onClick={handleSubmit}
           >
             Create Account
           </Button>
@@ -271,8 +271,8 @@ export default function SignUpPage() {
               Already have an account?{" "}
             </span>
             <Link
-              href="/login"
               className={`text-sm font-medium ${isDark ? "text-blue-400" : "text-blue-600"} hover:underline`}
+              href="/login"
             >
               Sign In
             </Link>

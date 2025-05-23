@@ -17,8 +17,9 @@ import {
   cn,
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
-import { ThemeSwitch } from "../theme-switch";
 import { useSession } from "next-auth/react";
+
+import { ThemeSwitch } from "../theme-switch";
 
 // import { AcmeIcon } from "./social";
 
@@ -110,11 +111,11 @@ const PublicNavbar = React.forwardRef<HTMLElement, NavbarProps>(
           <NavbarItem className="ml-2 !flex gap-2">
             {status !== "authenticated" && (
               <Button
+                as={Link}
                 className="text-default-500"
+                href="/login"
                 radius="full"
                 variant="light"
-                as={Link}
-                href="/login"
               >
                 Login
               </Button>
@@ -175,7 +176,7 @@ const PublicNavbar = React.forwardRef<HTMLElement, NavbarProps>(
         </NavbarMenu>
       </Navbar>
     );
-  }
+  },
 );
 
 PublicNavbar.displayName = "PublicNavbar";

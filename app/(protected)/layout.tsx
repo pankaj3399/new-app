@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { redirect } from "next/navigation";
 
 import { Providers } from "../providers";
 
@@ -9,7 +10,6 @@ import { fontSans } from "@/config/fonts";
 // import { Navbar } from "@/components/navbar";
 import PrivateNavbar from "@/components/Navbar/PrivateNavbar";
 import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: {
@@ -44,7 +44,7 @@ export default async function RootLayout({
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
@@ -53,7 +53,7 @@ export default async function RootLayout({
             <main className="container mx-auto max-w-7xl flex-grow">
               {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-3"></footer>
+            <footer className="w-full flex items-center justify-center py-3" />
           </div>
         </Providers>
       </body>

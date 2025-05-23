@@ -7,7 +7,7 @@ import prisma from "@/lib/prisma";
 export const updateUserProfileInfo = async (
   userName: string,
   email: string,
-  timeLimit: TimeLimit
+  timeLimit: TimeLimit,
 ) => {
   const session = await auth();
 

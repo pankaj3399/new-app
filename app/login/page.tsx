@@ -95,12 +95,12 @@ export default function SignInPage() {
 
       {/* Theme Toggle */}
       <button
-        onClick={() => setIsDark(!isDark)}
         className={`fixed top-6 right-6 z-50 p-3 rounded-full backdrop-blur-lg border transition-all duration-300 hover:scale-110 ${
           isDark
             ? "bg-white/10 border-white/20 hover:bg-white/20"
             : "bg-black/10 border-black/20 hover:bg-black/20"
         }`}
+        onClick={() => setIsDark(!isDark)}
       >
         {isDark ? (
           <Sun className="w-5 h-5 text-yellow-400" />
@@ -143,11 +143,11 @@ export default function SignInPage() {
 
           {/* Form */}
           <form
+            className="space-y-6"
             onSubmit={(e) => {
               e.preventDefault();
               handleSubmit();
             }}
-            className="space-y-6"
           >
             {/* Email Field */}
             <div className="relative">
@@ -157,16 +157,16 @@ export default function SignInPage() {
                 />
               </div>
               <input
-                type="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={(e) => handleInputChange("email", e.target.value)}
+                required
                 className={`w-full pl-12 pr-4 py-4 rounded-xl border transition-all duration-200 ${
                   isDark
                     ? "bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500 focus:bg-slate-800/80"
                     : "bg-white/50 border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:bg-white/80"
                 } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                required
+                placeholder="Enter your email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleInputChange("email", e.target.value)}
               />
               <label
                 className={`absolute -top-2 left-3 px-2 text-xs font-medium ${
@@ -187,25 +187,25 @@ export default function SignInPage() {
                 />
               </div>
               <input
-                type={isVisible ? "text" : "password"}
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={(e) => handleInputChange("password", e.target.value)}
+                required
                 className={`w-full pl-12 pr-12 py-4 rounded-xl border transition-all duration-200 ${
                   isDark
                     ? "bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500 focus:bg-slate-800/80"
                     : "bg-white/50 border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:bg-white/80"
                 } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                required
+                placeholder="Enter your password"
+                type={isVisible ? "text" : "password"}
+                value={formData.password}
+                onChange={(e) => handleInputChange("password", e.target.value)}
               />
               <button
-                type="button"
-                onClick={toggleVisibility}
                 className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-md transition-colors ${
                   isDark
                     ? "text-slate-400 hover:text-white"
                     : "text-slate-600 hover:text-slate-900"
                 } hover:bg-slate-200/20`}
+                type="button"
+                onClick={toggleVisibility}
               >
                 {isVisible ? (
                   <EyeOff className="w-5 h-5" />
@@ -228,29 +228,29 @@ export default function SignInPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <input
-                  type="checkbox"
-                  id="remember"
                   checked={formData.rememberMe}
+                  className="w-4 h-4 rounded border-2 border-blue-500 text-blue-500 focus:ring-blue-500"
+                  id="remember"
+                  type="checkbox"
                   onChange={(e) =>
                     handleInputChange("rememberMe", e.target.checked)
                   }
-                  className="w-4 h-4 rounded border-2 border-blue-500 text-blue-500 focus:ring-blue-500"
                 />
                 <label
-                  htmlFor="remember"
                   className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
+                  htmlFor="remember"
                 >
                   Remember me
                 </label>
               </div>
 
               <Link
-                href="/forgot-password"
                 className={`text-sm font-medium transition-colors ${
                   isDark
                     ? "text-blue-400 hover:text-blue-300"
                     : "text-blue-600 hover:text-blue-700"
                 } hover:underline`}
+                href="/forgot-password"
               >
                 Forgot password?
               </Link>
@@ -258,13 +258,13 @@ export default function SignInPage() {
 
             {/* Submit Button */}
             <button
-              type="submit"
-              disabled={isLoading}
               className={`w-full py-4 px-6 rounded-xl font-semibold text-white shadow-lg transition-all duration-300 ${
                 isDark
                   ? "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                   : "bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800"
               } hover:shadow-xl hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none`}
+              disabled={isLoading}
+              type="submit"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">
@@ -287,12 +287,12 @@ export default function SignInPage() {
                 Don&apos;t have an account?{" "}
               </span>
               <Link
-                href="/signup"
                 className={`text-sm font-semibold transition-colors ${
                   isDark
                     ? "text-blue-400 hover:text-blue-300"
                     : "text-blue-600 hover:text-blue-700"
                 } hover:underline`}
+                href="/signup"
               >
                 Create Account
               </Link>

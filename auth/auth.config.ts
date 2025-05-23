@@ -36,7 +36,7 @@ export default {
 
           const isPasswordMatched = await bcrypt.compare(
             password,
-            user.password
+            user.password,
           );
 
           if (!isPasswordMatched) {

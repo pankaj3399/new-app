@@ -16,6 +16,7 @@ import {
   Clock,
   Tag,
 } from "lucide-react";
+import { z } from "zod";
 
 import { updateProfileSchema } from "@/lib/zod";
 import { updateUserProfileInfo } from "@/actions/user.action";
@@ -24,7 +25,6 @@ import {
   categoryDeleteAction,
   categoryUpdateAction,
 } from "@/actions/category.actions";
-import { z } from "zod";
 
 enum TimeLimit {
   Open_Settings = "Open_Settings",
@@ -111,7 +111,7 @@ function CategoryForm({
         </h3>
       </div>
 
-      <form onSubmit={onSubmit} className="space-y-4 flex flex-col">
+      <form className="space-y-4 flex flex-col" onSubmit={onSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Category Input */}
           <div className="relative">
@@ -121,16 +121,16 @@ function CategoryForm({
               />
             </div>
             <input
-              type="text"
-              placeholder="Enter category name"
-              value={currentCategory}
-              onChange={(e) => setCurrentCategory(e.target.value)}
+              required
               className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200 ${
                 isDark
                   ? "bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500 focus:bg-slate-800/80"
                   : "bg-white/50 border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:bg-white/80"
               } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-              required
+              placeholder="Enter category name"
+              type="text"
+              value={currentCategory}
+              onChange={(e) => setCurrentCategory(e.target.value)}
             />
             <label
               className={`absolute -top-2 left-3 px-2 text-xs font-medium ${
@@ -151,16 +151,16 @@ function CategoryForm({
               />
             </div>
             <input
-              type="text"
-              placeholder="#000000"
-              value={currentColor}
-              onChange={(e) => setCurrentColor(e.target.value)}
+              required
               className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200 ${
                 isDark
                   ? "bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500 focus:bg-slate-800/80"
                   : "bg-white/50 border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:bg-white/80"
               } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-              required
+              placeholder="#000000"
+              type="text"
+              value={currentColor}
+              onChange={(e) => setCurrentColor(e.target.value)}
             />
             <label
               className={`absolute -top-2 left-3 px-2 text-xs font-medium ${
@@ -176,8 +176,6 @@ function CategoryForm({
 
         {/* Action Button */}
         <button
-          type="submit"
-          disabled={isLoading}
           className={`w-full py-3 px-6 rounded-xl max-w-40 mx-auto self-center font-semibold text-white shadow-lg transition-all duration-300 ${
             isUpdate
               ? isDark
@@ -187,6 +185,8 @@ function CategoryForm({
                 ? "bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700"
                 : "bg-gradient-to-r from-red-600 to-pink-700 hover:from-red-700 hover:to-pink-800"
           } hover:shadow-xl hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none`}
+          disabled={isLoading}
+          type="submit"
         >
           {isLoading ? (
             <div className="flex items-center justify-center gap-2">
@@ -317,12 +317,12 @@ export function ProfilePageClient(props: Props) {
 
       {/* Theme Toggle */}
       <button
-        onClick={() => setIsDark(!isDark)}
         className={`fixed top-6 right-6 z-50 p-3 rounded-full backdrop-blur-lg border transition-all duration-300 hover:scale-110 ${
           isDark
             ? "bg-white/10 border-white/20 hover:bg-white/20"
             : "bg-black/10 border-black/20 hover:bg-black/20"
         }`}
+        onClick={() => setIsDark(!isDark)}
       >
         {isDark ? (
           <Sun className="w-5 h-5 text-yellow-400" />
@@ -384,7 +384,7 @@ export function ProfilePageClient(props: Props) {
               </h2>
             </div>
 
-            <form onSubmit={onSubmit} className="space-y-6">
+            <form className="space-y-6" onSubmit={onSubmit}>
               {/* Username Field */}
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2">
@@ -395,17 +395,17 @@ export function ProfilePageClient(props: Props) {
                   />
                 </div>
                 <input
-                  type="text"
-                  name="username"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  required
                   className={`w-full pl-12 pr-4 py-4 rounded-xl border transition-all duration-200 ${
                     isDark
                       ? "bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500 focus:bg-slate-800/80"
                       : "bg-white/50 border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:bg-white/80"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                  required
+                  name="username"
+                  placeholder="Enter your username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
                 <label
                   className={`absolute -top-2 left-3 px-2 text-xs font-medium ${
@@ -428,17 +428,17 @@ export function ProfilePageClient(props: Props) {
                   />
                 </div>
                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   className={`w-full pl-12 pr-4 py-4 rounded-xl border transition-all duration-200 ${
                     isDark
                       ? "bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500 focus:bg-slate-800/80"
                       : "bg-white/50 border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:bg-white/80"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                  required
+                  name="email"
+                  placeholder="Enter your email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <label
                   className={`absolute -top-2 left-3 px-2 text-xs font-medium ${
@@ -461,12 +461,12 @@ export function ProfilePageClient(props: Props) {
                   />
                 </div>
                 <select
-                  name="timeLimit"
                   className={`w-full pl-12 pr-4 py-4 rounded-xl border transition-all duration-200 ${
                     isDark
                       ? "bg-slate-800/50 border-slate-600 text-white focus:border-blue-500 focus:bg-slate-800/80"
                       : "bg-white/50 border-slate-300 text-slate-900 focus:border-blue-500 focus:bg-white/80"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                  name="timeLimit"
                 >
                   <option value="">Select a Time Limit</option>
                   {timeLimits.map((limit) => (
@@ -488,13 +488,13 @@ export function ProfilePageClient(props: Props) {
 
               {/* Submit Button */}
               <button
-                type="submit"
-                disabled={isLoading}
                 className={`w-full py-4 px-6 rounded-xl font-semibold text-white shadow-lg transition-all duration-300 ${
                   isDark
                     ? "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                     : "bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800"
                 } hover:shadow-xl hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none`}
+                disabled={isLoading}
+                type="submit"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center gap-2">
@@ -567,8 +567,8 @@ export function ProfilePageClient(props: Props) {
               </div>
 
               <form
-                onSubmit={handleCreateNewCategory}
                 className="space-y-6 flex flex-col"
+                onSubmit={handleCreateNewCategory}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Category Name */}
@@ -581,15 +581,15 @@ export function ProfilePageClient(props: Props) {
                       />
                     </div>
                     <input
-                      type="text"
-                      name="category"
-                      placeholder="Enter category name"
+                      required
                       className={`w-full pl-12 pr-4 py-4 rounded-xl border transition-all duration-200 ${
                         isDark
                           ? "bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500 focus:bg-slate-800/80"
                           : "bg-white/50 border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:bg-white/80"
                       } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                      required
+                      name="category"
+                      placeholder="Enter category name"
+                      type="text"
                     />
                     <label
                       className={`absolute -top-2 left-3 px-2 text-xs font-medium ${
@@ -612,15 +612,15 @@ export function ProfilePageClient(props: Props) {
                       />
                     </div>
                     <input
-                      type="text"
-                      name="color"
-                      placeholder="#000000"
+                      required
                       className={`w-full pl-12 pr-4 py-4 rounded-xl border transition-all duration-200 ${
                         isDark
                           ? "bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500 focus:bg-slate-800/80"
                           : "bg-white/50 border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:bg-white/80"
                       } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                      required
+                      name="color"
+                      placeholder="#000000"
+                      type="text"
                     />
                     <label
                       className={`absolute -top-2 left-3 px-2 text-xs font-medium ${
@@ -635,13 +635,13 @@ export function ProfilePageClient(props: Props) {
                 </div>
 
                 <button
-                  type="submit"
-                  disabled={isLoading}
                   className={`w-full py-4 px-6 max-w-60 rounded-xl font-semibold text-white self-center shadow-lg transition-all duration-300 ${
                     isDark
                       ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
                       : "bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800"
                   } hover:shadow-xl hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none`}
+                  disabled={isLoading}
+                  type="submit"
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center gap-2">
@@ -662,14 +662,14 @@ export function ProfilePageClient(props: Props) {
           {/* Add Category Button */}
           <div className="text-center">
             <button
-              type="button"
-              disabled={newCategoryFormState}
-              onClick={() => setNewCategoryFormState(true)}
               className={`py-4 px-8 rounded-xl font-semibold transition-all duration-300 ${
                 isDark
                   ? "bg-slate-800/50 border-slate-600 text-white hover:bg-slate-800/80"
                   : "bg-white/50 border-slate-300 text-slate-900 hover:bg-white/80"
               } border backdrop-blur-lg hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
+              disabled={newCategoryFormState}
+              type="button"
+              onClick={() => setNewCategoryFormState(true)}
             >
               <div className="flex items-center justify-center gap-2">
                 <Plus className="w-5 h-5" />
